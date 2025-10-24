@@ -177,6 +177,7 @@ class ChatAppViewModel @Inject constructor(
         try {
             val user = db.collection(COLLECTION_USER).document(uid).get().await().toObject<UserData>()
             userData.value = user
+            populateChat()
             return user
         } catch (e: Exception) {
             handleException(e, "Failed to get user data")
@@ -317,7 +318,7 @@ class ChatAppViewModel @Inject constructor(
                     .get()
                     .await()
 
-                r.documents.mapNotNull { it.toObject(ChatData::class.java) }
+                chats.value = r.documents.mapNotNull { it.toObject(ChatData::class.java) }
             } catch (e: Exception) {
                 handleException(e, "Failed to populate chat")
             } finally {

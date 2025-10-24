@@ -72,23 +72,23 @@ fun ChatListScreen(navController: NavController, viewModel: ChatAppViewModel) {
                             Text(text = "No chats available")
                         }
                     else {
-//                        LazyColumn(modifier = Modifier.weight(1f)) {
-//                            items(chats) { chat ->
-//                                val chatUser = if (chat.user1.userId == userData?.userId) chat.user2
-//                                else chat.user1
-//                                CommonRow(
-//                                    imageUrl = chatUser.imageUrl ?: "",
-//                                    name = chatUser.name ?: "---"
-//                                ) {
-//                                    chat.chatId?.let {id ->
-//                                        navigateTo(
-//                                            navController,
-//                                            DestinationScreen.SingleChat.createRoute(id)
-//                                        )
-//                                    }
-//                                }
-//                            }
-//                        }
+                        LazyColumn(modifier = Modifier.weight(1f)) {
+                            items(chats) { chat ->
+                                val chatUser = if (chat.user1.userId == userData?.userId) chat.user2
+                                else chat.user1
+                                CommonRow(
+                                    imageUrl = chatUser.imageUrl ?: "",
+                                    name = chatUser.name ?: "---"
+                                ) {
+                                    chat.chatId?.let {id ->
+                                        navigateTo(
+                                            navController,
+                                            DestinationScreen.SingleChat.createRoute(id)
+                                        )
+                                    }
+                                }
+                            }
+                        }
                     }
 
                     BottomNavigationMenu(
